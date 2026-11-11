@@ -7,7 +7,11 @@ const productosAgotados = ["Arely", "Sofi"];
 function agregarAlCarrito(nombre, precio) {
 
     if (productosAgotados.includes(nombre)) {
-        mostrarNotificacion("⚠ " + nombre + " está agotado.");
+        mostrarNotificacion(
+    idiomaActual === "en"
+        ? "⚠ " + nombre + " is sold out."
+        : "⚠ " + nombre + " está agotado."
+);
         return;
     }
 
@@ -16,7 +20,11 @@ function agregarAlCarrito(nombre, precio) {
     );
 
     if (productoExiste) {
-        mostrarNotificacion("⚠ " + nombre + " ya está en tu carrito.");
+        mostrarNotificacion(
+    idiomaActual === "en"
+        ? "⚠ " + nombre + " is already in your cart."
+        : "⚠ " + nombre + " ya está en tu carrito."
+);
         return;
     }
 
@@ -26,7 +34,11 @@ function agregarAlCarrito(nombre, precio) {
     });
     actualizarCarrito();
 
-    mostrarNotificacion("✓ " + nombre + " fue agregada a tu carrito.");
+    mostrarNotificacion(
+    idiomaActual === "en"
+        ? "✓ " + nombre + " was added to your cart."
+        : "✓ " + nombre + " fue agregada a tu carrito."
+);
 
     console.log("Producto agregado:", nombre);
     console.log("Carrito:", carrito);
@@ -41,7 +53,9 @@ function actualizarCarrito() {
     listaCarrito.innerHTML = "";
 
     if (carrito.length === 0) {
-        listaCarrito.innerHTML = "<p>Tu carrito está vacío.</p>";
+        listaCarrito.innerHTML = idiomaActual === "en"
+    ? "<p>Your cart is empty.</p>"
+    : "<p>Tu carrito está vacío.</p>";
         totalCarrito.textContent = "0";
         return;
     }
@@ -167,7 +181,11 @@ function mostrarNotificacion(mensaje) {
 function finalizarCompra() {
 
     if (carrito.length === 0) {
-        mostrarNotificacion("⚠ Tu carrito está vacío.");
+        mostrarNotificacion(
+    idiomaActual === "en"
+        ? "⚠ Your cart is empty."
+        : "⚠ Tu carrito está vacío."
+);
         return;
     }
 
@@ -298,7 +316,11 @@ function confirmarPedido(tipo) {
 );
 
 if (productoAgotado) {
-    mostrarNotificacion("⚠ " + productoAgotado.nombre + " está agotado. Elimínalo del carrito para continuar.");
+    mostrarNotificacion(
+    idiomaActual === "en"
+        ? "⚠ " + productoAgotado.nombre + " is sold out. Remove it from your cart to continue."
+        : "⚠ " + productoAgotado.nombre + " está agotado. Elimínalo del carrito para continuar."
+);
     return;
 }
 
@@ -311,7 +333,11 @@ carrito.forEach(producto => {
 const envio = calcularEnvio();
 
 if (envio === null) {
-  mostrarNotificacion("⚠ Ingresa un ZIP Code válido.");
+  mostrarNotificacion(
+    idiomaActual === "en"
+        ? "⚠ Please enter a valid ZIP Code."
+        : "⚠ Ingresa un ZIP Code válido."
+);
   return;
 }
 
@@ -868,6 +894,153 @@ if (descripcionValeria) {
   }
 }
 
+/* ===== NUEVA COLECCIÓN: ESPAÑOL E INGLÉS ===== */
+
+const traduccionesNuevaColeccion = {
+  "descripcion-carolina-pelo-res": {
+    es: "Bolsa artesanal elaborada en piel genuina, con detalles de pelo de res que le dan un estilo único, elegante y auténtico.",
+    en: "Handcrafted genuine leather handbag featuring cowhide hair details that give it a unique, elegant, and authentic style."
+  },
+  "descripcion-carolina-oscura-bronze": {
+    es: "Bolsa de piel genuina en tono oscuro, con elegantes detalles en bronce que resaltan su diseño artesanal y sofisticado.",
+    en: "Genuine leather handbag in a dark shade, featuring elegant bronze-tone details that highlight its handcrafted and sophisticated design."
+  },
+  "descripcion-jenny-oscura": {
+    es: "Bolsa artesanal elaborada en piel genuina, con un elegante tono oscuro y detalles que resaltan su estilo único y sofisticado.",
+    en: "Handcrafted genuine leather handbag in an elegant dark shade, featuring details that highlight its unique and sophisticated style."
+  },
+  "descripcion-keli-vibora": {
+    es: "Bolsa de piel genuina con un llamativo diseño de textura tipo víbora, que combina elegancia, personalidad y un estilo sofisticado.",
+    en: "Genuine leather handbag featuring an eye-catching snakeskin-inspired texture that combines elegance, personality, and sophisticated style."
+  },
+  "descripcion-keli-oscura": {
+    es: "Bolsa elaborada en 100% piel genuina, en un elegante tono oscuro que combina estilo, versatilidad y sofisticación. Ideal para complementar cualquier ocasión.",
+    en: "Handbag made from 100% genuine leather in an elegant dark shade, combining style, versatility, and sophistication. Perfect for any occasion."
+  },
+  "descripcion-keli-roja": {
+    es: "Bolsa elaborada en 100% piel genuina, en un hermoso tono rojo que destaca por su elegancia y personalidad. Ideal para darle un toque especial a cualquier estilo.",
+    en: "Handbag made from 100% genuine leather in a beautiful red shade that stands out for its elegance and personality. Perfect for adding a special touch to any outfit."
+  },
+  "descripcion-mayte-graso": {
+    es: "Bolsa artesanal elaborada en piel genuina, con acabado tipo graso y detalles de pelo de res que resaltan su estilo auténtico, elegante y sofisticado.",
+    en: "Handcrafted genuine leather handbag featuring an oiled-leather finish and cowhide hair details that highlight its authentic, elegant, and sophisticated style."
+  },
+  "descripcion-nataly-oscura": {
+    es: "Bolsa elaborada en 100% piel genuina, en un elegante tono oscuro que resalta su diseño artesanal y sofisticado. Perfecta para complementar tu estilo en cualquier ocasión.",
+    en: "Handbag made from 100% genuine leather in an elegant dark shade that highlights its handcrafted and sophisticated design. Perfect for complementing your style on any occasion."
+  },
+  "descripcion-regina": {
+    es: "Bolsa artesanal elaborada en 100% piel genuina, con un diseño elegante y sofisticado que combina estilo, personalidad y versatilidad. Ideal para cualquier ocasión.",
+    en: "Handcrafted handbag made from 100% genuine leather, featuring an elegant and sophisticated design that combines style, personality, and versatility. Ideal for any occasion."
+  },
+  "descripcion-rocio-flother-rosa": {
+    es: "Bolsa elaborada en 100% piel genuina, con un hermoso acabado Flother en tono rosa que resalta su elegancia y estilo femenino. Un diseño sofisticado ideal para cualquier ocasión.",
+    en: "Handbag made from 100% genuine leather, featuring a beautiful pink Flother finish that highlights its elegance and feminine style. A sophisticated design perfect for any occasion."
+  },
+  "descripcion-samanta-oscura": {
+    es: "Bolsa artesanal elaborada en 100% piel genuina, en un elegante tono oscuro que resalta su diseño sofisticado. Una pieza versátil y con personalidad, ideal para complementar cualquier estilo.",
+    en: "Handcrafted handbag made from 100% genuine leather in an elegant dark shade that highlights its sophisticated design. A versatile piece full of personality, perfect for complementing any style."
+  },
+  "descripcion-sofi-2": {
+    es: "Bolsa elaborada en 100% piel genuina, con un diseño elegante y versátil que combina estilo y personalidad. Perfecta para complementar cualquier ocasión con un toque sofisticado.",
+    en: "Handbag made from 100% genuine leather, featuring an elegant and versatile design that combines style and personality. Perfect for adding a sophisticated touch to any occasion."
+  }
+};
+
+Object.entries(traduccionesNuevaColeccion).forEach(
+  ([clase, textos]) => {
+    const descripcion = document.querySelector("." + clase);
+
+    if (descripcion) {
+      descripcion.textContent = textos[idioma];
+    }
+  }
+);
+
+/* Traducción de Sofi2 */
+
+const descripcionSofi2 = document.querySelector(
+    ".descripcion-sofi-2"
+);
+
+if (descripcionSofi2) {
+    if (idioma === "en") {
+        descripcionSofi2.textContent =
+            "Handbag made from 100% genuine leather, " +
+            "featuring an elegant and versatile design " +
+            "that combines style and personality. " +
+            "Perfect for adding a sophisticated touch " +
+            "to any occasion.";
+    } else {
+        descripcionSofi2.textContent =
+            "Bolsa elaborada en 100% piel genuina, " +
+            "con un diseño elegante y versátil " +
+            "que combina estilo y personalidad. " +
+            "Perfecta para complementar cualquier " +
+            "ocasión con un toque sofisticado.";
+    }
+}
+
+/* ===== CARTERÓN DAFNE GRIS OSCURO ===== */
+
+const descripcionCarteronDafneGris = document.querySelector(
+    ".descripcion-dafne-gris-oscuro"
+);
+
+if (descripcionCarteronDafneGris) {
+    if (idioma === "en") {
+        descripcionCarteronDafneGris.textContent =
+            "Genuine leather wallet in dark gray, " +
+            "featuring floral embossing, gold-tone " +
+            "hardware, and multiple compartments.";
+    } else {
+        descripcionCarteronDafneGris.textContent =
+            "Carterón de piel genuina en gris oscuro, " +
+            "con grabado floral, herrajes dorados " +
+            "y múltiples compartimentos.";
+    }
+}
+
+/* ===== SOBRE 2 ===== */
+
+const descripcionSobre2Nueva = document.querySelector(
+    ".descripcion-sobre-2"
+);
+
+if (descripcionSobre2Nueva) {
+    if (idioma === "en") {
+        descripcionSobre2Nueva.textContent =
+            "Genuine leather handbag with an elegant, " +
+            "practical, and versatile design " +
+            "for any occasion.";
+    } else {
+        descripcionSobre2Nueva.textContent =
+            "Bolsa de piel genuina con un diseño " +
+            "elegante, práctico y versátil " +
+            "para cualquier ocasión.";
+    }
+}
+
+/* ===== CARTERÓN DAFNE CHOCOLATE ===== */
+
+const descripcionDafneChocolate = document.querySelector(
+    ".descripcion-dafne-chocolate"
+);
+
+if (descripcionDafneChocolate) {
+    if (idioma === "en") {
+        descripcionDafneChocolate.textContent =
+            "Genuine leather wallet in a chocolate brown shade, " +
+            "featuring floral embossing, gold-tone hardware, " +
+            "and multiple compartments.";
+    } else {
+        descripcionDafneChocolate.textContent =
+            "Carterón de piel genuina en tono chocolate, " +
+            "con grabado floral, herrajes dorados " +
+            "y múltiples compartimentos.";
+    }
+}
+
 // Traducción de Nuestra Historia
 const textosHistoria = {
     en: {
@@ -1271,7 +1444,79 @@ const fotosAdicionales = {
   "Carteron Dafne Gris Oscuro Collage.png",
   "Carteron Dafne Gris Oscuro Portrait.png",
   "Carteron Dafne Gris Oscuro side to side.png"
-]
+],
+
+"Carolina con pelo de res": [
+    "Carolina con pelo de res Collage.png",
+    "Carolina con pelo de res portrait.png",
+    "Carolina con pelon de res side to side.png",
+],
+
+"Carolina Oscura con Bronze": [
+    "Carolina oscura con bronze collage.png",
+    "Carolina oscura con bronze portrait.png",
+    "Carolina oscura con bronze side to side.png",
+],
+
+"Jenny Oscura": [
+    "Jenny oscura collage.png",
+    "Jenny oscura portrait.png",
+    "Jenny oscura side to side.png",
+],
+
+"Keli en Piel de Víbora": [
+    "Keli en piel de vibora collage.png",
+    "Keli en piel de vibora portrait.png",
+    "Keli en piel de vibora side to side.png",
+],
+
+"Keli Oscura": [
+    "Keli oscura collage.png",
+    "Keli oscura portrait.png",
+    "Keli oscura side to side.png",
+],
+
+"Keli Roja": [
+    "Keli roja collage.png",
+    "Keli roja portrait.png",
+    "Keli roja side to side.png",
+],
+
+"Mayte en Graso con Pelo de Res": [
+    "Mayte en graso con pelo de res collage.png",
+    "Mayte en graso con pelo de res portrait.png",
+    "Mayte en graso con pelo de res side to side.png",
+],
+
+"Nataly Oscura": [
+    "Nataly oscura collage.png",
+    "Nataly oscura portrait.png",
+    "Nataly oscura side to side.png",
+],
+
+"Regina": [
+    "Regina collage.png",
+    "Regina portrait.png",
+    "Regina side to side.png",
+],
+
+"Rocío en Flother Rosa": [
+    "Rocio en flother rosa collage.png",
+    "Rocio en flother rosa portrait.png",
+    "Rocio en flother rosa side to side.png",
+],
+
+"Samanta Oscura": [
+    "Samanta oscura collage.png",
+    "Samanta oscura portrait.png",
+    "Samanta oscura side to side.png",
+],
+
+"Sofi2": [
+    "Sofi2 collage.png",
+    "Sofi2 portrait.png",
+    "Sofi2 side to side.png",
+],
 
 };
 
