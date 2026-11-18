@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Información para Google -->
+   
+<title>Jackie's Boutique | Bolsas de Piel Genuina para Mujer</title>
+
+<meta name="description"
+      content="Descubre Jackie's Boutique: bolsas y carteras de piel 100% genuina, diseños elegantes con inspiración mexicana. Compra en línea. Tu estilo, tu esencia.">
+
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="https://perlagc1.github.io/Jackie-s-Boutique/">
+
+    <!-- Información al compartir en redes sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title"
+          content="Jackie's Boutique | Tu estilo, tu esencia">
+    <meta property="og:description"
+          content="Bolsos y carteras de piel genuina con diseños únicos y elegantes. Descubre nuestra colección.">
+    <meta property="og:image"
+          content="https://perlagc1.github.io/Jackie-s-Boutique/images/JB_logo.jpeg">
+    <meta property="og:url"
+          content="https://perlagc1.github.io/Jackie-s-Boutique/">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+   <header>
+    <img src="images/JB_logo.jpeg"
+         alt="Jackie's Boutique - Tu estilo, tu esencia"
+         class="logo">
+</header>
+
+<div class="selector-idioma">
+    <button type="button" id="btn-es" onclick="cambiarIdioma('es')">
+        🇲🇽 Español
+    </button>
+
+    <button type="button" id="btn-en" onclick="cambiarIdioma('en')">
+        🇺🇸 English
+    </button>
+</div>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#coleccion">Colección</a>
+        <a href="#nosotros">Nuestra Historia</a>
+        <a href="#contacto">Contáctanos</a>
+        <a href="#" onclick="mostrarCarrito(); return false;">
+    🛒 Carrito (<span id="contador-carrito">0</span>)
+</a>
+
+</nav>
+
+    <!-- CARRITO DE COMPRAS -->
+<section id="carrito" style="display: none;">
+    <h2>🛒 Tu Carrito</h2>
+
+    <div id="lista-carrito">
+        <p>Tu carrito está vacío.</p>
+    </div>
+
+    <p>
+        <strong>Total: $<span id="total-carrito">0</span></strong>
+    </p>
+
+    <button id="finalizar-compra" onclick="finalizarCompra()">
+    Finalizar compra
+</button>
+<div id="checkout" style="display: none;">
+    <h3>Finaliza tu compra</h3>
+
+    <p>
+        Total de tu pedido:
+        <strong>$<span id="checkout-total">0</span></strong>
+    </p>
+
+    <p>Selecciona tu método de pago:</p>
+
+    <div class="metodos-pago">
+        <button type="button" onclick="mostrarPago('Cash App')">Cash App</button>
+        <button type="button" onclick="mostrarPago('Venmo')">Venmo</button>
+        <button type="button" onclick="mostrarPago('Zelle')">Zelle</button>
+    </div>
+
+    <div id="instrucciones-pago" style="display: none;"></div>
+
+<div id="confirmar-pedido" style="display: none;">
+
+    <button type="button" onclick="confirmarPedido('sms')">
+        📱 Enviar por mensaje
+    </button>
+
+    <button type="button" onclick="confirmarPedido('email')">
+        ✉️ Enviar por correo
+    </button>
+
+</div>
+
+<p class="aviso-pedido">
+    Importante: enviar tu pedido no reserva la bolsa.
+    Tu pedido quedará pendiente hasta que recibamos y confirmemos tu pago.
+</p>
+
+</div>
+
+</section>
+
+    <main>
+
+        <!-- INICIO -->
+        <section id="inicio">
+            <h1>Bolsas de Piel 100% Genuina</h1>
+
+            <p>
+                Descubre nuestra colección de bolsas de piel,
+                creadas para mujeres que buscan elegancia,
+                personalidad y un estilo único.
+            </p>
+
+            <a href="#coleccion">Ver Colección</a>
+        </section>
+
+
+        <!-- COLECCIÓN -->
+        <section id="coleccion">
+
+            <h2>Nuestra Colección</h2>
+
+            <p class="coleccion-intro">
+                Descubre diseños únicos elaborados en 100% piel,
+                seleccionados especialmente para resaltar tu estilo
+                y personalidad.
+            </p>
+
+            <div class="productos">
+
+               <article>
+    <img src="images/Arely.png"
+         alt="Bolsa Arely de piel">
+
+    <h3>Arely</h3>
+
+    <p class="descripcion-arely">
+  Un diseño elegante elaborado en 100% piel,
+  con detalles artesanales que resaltan su estilo
+  único y sofisticado.
+</p>
+
+    <p><strong>$55</strong></p>
+
+    <button disabled class="agotado">
+    AGOTADO
+</button>
+</article>
+
+        <article>
+                    <img src="images/Keli_a.png"
+     alt="Bolsa Keli azul de piel">
+
+
+                    <h3>Keli</h3>
+
+                    <p class="descripcion-keli-azul">
+                        Compacta, elegante y elaborada en 100% piel.
+                        Perfecta para llevar lo esencial con estilo.
+                    </p>
+
+                    <p><strong>$55</strong></p>
+                    <button onclick="agregarAlCarrito('Keli Azul', 55)">
+    Agregar al carrito 🛒
+</button>
+                </article>
+
+          <article>
+                    <img src="images/bolsarosapeque.png"
+                        alt="Bolsa rosa pequeña de piel">
+
+                    <h3>Keli</h3>
+
+                    <p class="descripcion-keli-rosa">
+                        Pequeña, femenina y llena de personalidad.
+                        Elaborada en 100% piel con un diseño que destaca.
+                    </p>
+
+                    <p><strong>$55</strong></p>
+                    <button onclick="agregarAlCarrito('Keli Rosa', 55)">
+    Agregar al carrito 🛒
+</button>
+                </article>
+
+
+                <article>
+                    <img src="images/bolsaverdejadegrande.png"
+                        alt="Bolsa verde jade grande de piel">
+
+                    <h3>Perla</h3>
+
+                    <p class="descripcion-perla">
+                        Un diseño llamativo y elegante en 100% piel.
+                        Su tono verde jade aporta personalidad y
+                        distinción.
+                    </p>
+
+                    <p><strong>$85</strong></p>
+                    <button onclick="agregarAlCarrito('Perla', 85)">
+    Agregar al carrito 🛒
+</button>
+                </article>
+
+
+                <article>
+                    <img src="images/Juli_v.png"
+     alt="Bolsa Juli verde de piel">
+                
+
+                    <h3>Juli</h3>
+
+                    <p class="descripcion-juli">
+                        Una pieza encantadora elaborada en 100% piel,
+                        con detalles dorados que resaltan su estilo
+                        femenino.
+                    </p>
+
+                    <p><strong>$55</strong></p>
+                    <button onclick="agregarAlCarrito('Juli', 55)">
+    Agregar al carrito 🛒
+</button>
+                </article>
+
+
+                <article>
+                    <img src="images/Dafne_pelo_de_res.png"
+     alt="Bolsa Dafne de piel con pelo de res">
+                        
+
+                    <h3>Dafne</h3>
+
+     <p class="descripcion-dafne">
+    Un diseño elegante elaborado en 100% piel,
+    con un hermoso detalle de pelo de res que le da
+    un estilo único y sofisticado.
+</p>
+
+                    <p><strong>$55</strong></p>
+                    <button onclick="agregarAlCarrito('Dafne', 55)">
+    Agregar al carrito 🛒
+</button>
+                </article>
+
+
+                <article>
+                    <img src="images/carterapequerosacondorado.png"
+                        alt="Cartera pequeña rosa con dorado de piel">
+
+                    <h3>Michel</h3>
+
+                    <p class="descripcion-michel">
+                        Una cartera de 100% piel con un hermoso diseño
+                        rosa y detalles dorados que le dan un toque
+                        especial y elegante.
+                    </p>
+
+                    <p><strong>$40</strong></p>
+                    <button onclick="agregarAlCarrito('Michel', 40)">
+    Agregar al carrito 🛒
+</button>
+                    <button type="button" class="ver-mas-fotos" data-galeria="Michel" onclick="abrirGaleria(this)">Ver más fotos</button>
+</article>
+
+                <article>
+    <img src="images/Sofi.png"
+         alt="Bolsa Sofi de piel">
+
+    <h3>Sofi</h3>
+
+    <p class="descripcion-sofi">
+        Un diseño clásico y elegante elaborado en 100% piel,
+        con un estilo versátil ideal para cualquier ocasión.
+    </p>
+
+    <p><strong>$55</strong></p>
+
+    <button disabled class="agotado">
+    AGOTADO
+</button>
+</article>
+
+<article>
+    <img src="images/Grecia.png"
+         alt="Bolsa Grecia de piel">
+
+    <h3>Grecia</h3>
+
+    <p class="descripcion-grecia">
+        Un diseño artesanal elaborado en 100% piel,
+        con elegantes detalles florales que resaltan
+        su estilo único y sofisticado.
+    </p>
+
+    <p><strong>$85</strong></p>
+
+    <button onclick="agregarAlCarrito('Grecia', 85)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+<article>
+    <img src="images/Cloe-turquesa.png"
+         alt="Bolsa Cloe de piel">
+
+    <h3>Cloe</h3>
+
+    <p class="descripcion-cloe">
+        Una cartera artesanal elaborada en 100% piel,
+        con un hermoso diseño floral y un tono turquesa
+        que resalta su estilo único.
+    </p>
+
+    <p><strong>$40</strong></p>
+
+    <button onclick="agregarAlCarrito('Cloe- Turquesa', 40)">
+        Agregar al carrito 🛒
+    </button>
+    <button type="button" class="ver-mas-fotos" data-galeria="Cloe" onclick="abrirGaleria(this)">Ver más fotos</button>
+</article>
+
+<article>
+    <img src="images/Cloe_chocolate.png"
+         alt="Bolsa Cloe Chocolate de piel">
+
+    <h3>Cloe Chocolate</h3>
+
+    <p class="descripcion-cloe-chocolate">
+        Una cartera artesanal elaborada en 100% piel,
+        con un elegante tono chocolate y detalles florales
+        que resaltan su estilo clásico y sofisticado.
+    </p>
+
+    <p><strong>$40</strong></p>
+
+    <button onclick="agregarAlCarrito('Cloe Chocolate', 40)">
+        Agregar al carrito 🛒
+    </button>
+    <button type="button" class="ver-mas-fotos" data-galeria="Cloe Chocolate" onclick="abrirGaleria(this)">Ver más fotos</button>
+</article>
+
+<article>
+    <img src="images/Cloe_gris.png"
+         alt="Bolsa Cloe Gris de piel">
+
+    <h3>Cloe Gris</h3>
+
+    <p class="descripcion-cloe-gris">
+        Una cartera artesanal elaborada en 100% piel,
+        con un elegante tono gris y detalles florales
+        que le dan un estilo moderno y sofisticado.
+    </p>
+
+    <p><strong>$40</strong></p>
+
+    <button onclick="agregarAlCarrito('Cloe Gris', 40)">
+        Agregar al carrito 🛒
+    </button>
+    <button type="button" class="ver-mas-fotos" data-galeria="Cloe Gris" onclick="abrirGaleria(this)">Ver más fotos</button>
+</article>
+
+<article>
+    <img src="images/Keli_g.png"
+         alt="Bolsa Keli Grande café chocolate de piel">
+
+    <h3>Keli Grande</h3>
+
+    <p class="descripcion-keli-grande">
+        Una bolsa amplia y elegante elaborada en 100% piel,
+        con un hermoso tono café chocolate y un diseño
+        clásico y sofisticado.
+    </p>
+
+    <p><strong>$85</strong></p>
+
+    <button onclick="agregarAlCarrito('Keli Grande', 85)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+<article>
+    <img src="images/Jackie.png"
+         alt="Bolsa Jackie rosa de piel">
+
+    <h3>Jackie</h3>
+
+    <p class="descripcion-jackie">
+        Una bolsa femenina y elegante elaborada en 100% piel,
+        con un hermoso tono rosa y detalles que le dan
+        un estilo moderno y sofisticado.
+    </p>
+
+    <p><strong>$50</strong></p>
+
+    <button onclick="agregarAlCarrito('Jackie', 50)">
+        Agregar al carrito 🛒
+    </button>
+    <button type="button" class="ver-mas-fotos" data-galeria="Jackie" onclick="abrirGaleria(this)">Ver más fotos</button>
+</article>
+
+<article>
+    <img src="images/Dania.png"
+         alt="Bolsa Dania de piel">
+
+    <h3>Dania</h3>
+
+    <p class="descripcion-dania">
+        Una bolsa elegante elaborada en 100% piel,
+        con un hermoso diseño floral y detalles en tono café
+        que resaltan su estilo único y sofisticado.
+    </p>
+
+    <p><strong>$65</strong></p>
+
+    <button onclick="agregarAlCarrito('Dania', 65)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+<article>
+    <img src="images/Sobre.png"
+         alt="Bolsa Sobre de piel con pelo de res">
+
+    <h3>Sobre</h3>
+
+    <p class="descripcion-sobre">
+        Una bolsa artesanal elaborada en 100% piel,
+        con detalle de pelo de res, grabado floral
+        y flecos que le dan un estilo único y auténtico.
+    </p>
+
+    <p><strong>$65</strong></p>
+
+    <button onclick="agregarAlCarrito('Sobre', 65)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+<article>
+    <img src="images/Luna.png"
+         alt="Bolsa Luna café de piel">
+
+    <h3>Luna</h3>
+
+    <p class="descripcion-luna">
+        Una bolsa elegante elaborada en 100% piel,
+        con un hermoso grabado floral y un cálido tono café
+        que le dan un estilo artesanal y sofisticado.
+    </p>
+
+    <p><strong>$75</strong></p>
+
+    <button onclick="agregarAlCarrito('Luna', 75)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+<article>
+    <img src="images/Diana.png"
+         alt="Bolsa Diana café de piel">
+
+    <h3>Diana</h3>
+
+    <p class="descripcion-diana-grande">
+        Una bolsa amplia y elegante elaborada en 100% piel,
+        con un hermoso grabado floral y detalles artesanales
+        que resaltan su estilo clásico y sofisticado.
+    </p>
+
+    <p><strong>$85</strong></p>
+
+    <button onclick="agregarAlCarrito('Diana', 85)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+<article>
+    <img src="images/Isabel.png"
+         alt="Bolsa Isabel de piel">
+
+    <h3>Isabel</h3>
+
+    <p class="descripcion-isabel">
+        Una bolsa elegante y versátil elaborada en 100% piel,
+        con un hermoso tono neutro y detalles artesanales
+        que le dan un estilo clásico y sofisticado.
+    </p>
+
+    <p><strong>$65</strong></p>
+
+    <button onclick="agregarAlCarrito('Isabel', 65)">
+        Agregar al carrito 🛒
+    </button>
+</article>
+
+            </div>
+
+        </section>
+
+
+        <!-- NUESTRA HISTORIA -->
+        <section id="nosotros">
+
+            <h2 class="titulo-historia">Nuestra Historia</h2>
+
+            <p class="historia-1">
+                Bienvenidas a Jackie's Boutique, un espacio creado
+                para celebrar el estilo, la belleza y la esencia
+                de cada mujer.
+            </p>
+
+            <p class="historia-2">
+                Nuestra boutique nace del gusto por las bolsas
+                de 100% piel y por los diseños que combinan
+                elegancia, personalidad y un toque de inspiración
+                mexicana.
+            </p>
+
+            <p class="historia-3">
+                Cada pieza es elegida pensando en mujeres que
+                quieren llevar consigo algo especial que refleje
+                su propio estilo.
+            </p>
+
+            <p class="historia-lema">
+                <strong>Jackie's Boutique — Tu estilo, tu esencia.</strong>
+            </p>
+
+        </section>
+
+
+        <!-- CONTACTO -->
+        <section id="contacto">
+
+            <h2 class="titulo-contacto">Contáctanos</h2>
+
+            <p class="contacto-1">
+                ¿Te interesa alguna de nuestras bolsas?
+                Estamos aquí para ayudarte.
+            </p>
+
+            <p class="contacto-2">
+                Escríbenos para conocer nuestra colección,
+                disponibilidad y próximos diseños.
+            </p>
+
+            <div class="contacto-info">
+
+                <p>
+                    <strong class="contacto-telefono">📱 Teléfono:</strong>
+                    <a href="tel:13087460339">1-308-746-0339</a>
+                </p>
+
+                <p>
+                    <strong class="contacto-correo">📧 Correo:</strong>
+                    <a href="mailto:angel_perla@hotmail.com">
+                        angel_perla@hotmail.com
+                    </a>
+                </p>
+
+            </div>
+
+            <p class="contacto-final">
+                Será un placer atenderte.
+            </p>
+
+        </section>
+
+    </main>
+
+<div id="notificacion-carrito"></div>
+
+    <footer>
+    <p class="footer-derechos">
+        &copy; 2026 Jackie's Boutique. Todos los derechos reservados.
+    </p>
+    <p class="footer-lema">
+        Tu estilo, tu esencia.
+    </p>
+</footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
