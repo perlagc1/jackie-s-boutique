@@ -981,6 +981,216 @@ if (descripcionSofi2) {
     }
 }
 
+
+/* ===== TRADUCCIÓN DE MICHELLE ===== */
+
+const descripcionMichelle = document.querySelector(
+  ".descripcion-michelle"
+);
+
+if (descripcionMichelle) {
+  if (idioma === "en") {
+    descripcionMichelle.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "featuring an elegant and versatile design. " +
+      "Perfect for complementing your style " +
+      "on any occasion.";
+  } else {
+    descripcionMichelle.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "con un diseño elegante y versátil. " +
+      "Ideal para complementar tu estilo " +
+      "en cualquier ocasión.";
+  }
+}
+
+
+/* ===== TRADUCCIÓN DE DAISY ===== */
+
+const descripcionDaisy = document.querySelector(
+  ".descripcion-daisy"
+);
+
+if (descripcionDaisy) {
+  if (idioma === "en") {
+    descripcionDaisy.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a burgundy color with an oiled leather finish. " +
+      "An elegant and versatile design, " +
+      "perfect for any occasion.";
+  } else {
+    descripcionDaisy.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en tono guinda con acabado graso. " +
+      "Un diseño elegante y versátil, " +
+      "ideal para complementar cualquier ocasión.";
+  }
+}
+
+
+/* ===== TRADUCCIÓN DE NATALY BEIGE ===== */
+
+const descripcionNatalyBeige = document.querySelector(
+  ".descripcion-nataly-beige"
+);
+
+if (descripcionNatalyBeige) {
+  if (idioma === "en") {
+    descripcionNatalyBeige.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a beige tone with bronze details. " +
+      "Its elegant and versatile design is perfect " +
+      "for complementing any occasion.";
+  } else {
+    descripcionNatalyBeige.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en tono beige con detalles bronze. " +
+      "Su diseño elegante y versátil es ideal " +
+      "para complementar cualquier ocasión.";
+  }
+}
+
+
+/* ===== TRADUCCIÓN DE DAMIANA ===== */
+
+const descripcionDamiana = document.querySelector(
+  ".descripcion-damiana"
+);
+
+if (descripcionDamiana) {
+  if (idioma === "en") {
+    descripcionDamiana.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a beige tone with an oiled leather finish " +
+      "and bronze details. Its elegant and practical " +
+      "design is perfect for any occasion.";
+  } else {
+    descripcionDamiana.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en tono beige con acabado graso y " +
+      "detalles bronze. Su diseño elegante " +
+      "y práctico es ideal para cualquier ocasión.";
+  }
+}
+
+
+/* ===== TRADUCCIÓN DE RENATA CHOCOLATE ===== */
+
+const descripcionRenata = document.querySelector(
+  ".descripcion-renata"
+);
+
+if (descripcionRenata) {
+  if (idioma === "en") {
+    descripcionRenata.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a chocolate brown tone with an oiled " +
+      "leather finish. Its elegant and sophisticated " +
+      "design is perfect for any occasion.";
+  } else {
+    descripcionRenata.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en tono chocolate con acabado graso. " +
+      "Su diseño elegante y sofisticado " +
+      "es perfecto para complementar " +
+      "cualquier ocasión.";
+  }
+}
+
+
+/* ===== TRADUCCIÓN DE KELI ROSITA ===== */
+
+const descripcionKeliRosita = document.querySelector(
+  ".descripcion-keli-rosita"
+);
+
+if (descripcionKeliRosita) {
+  if (idioma === "en") {
+    descripcionKeliRosita.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a delicate pink shade with a flother " +
+      "leather finish. Its feminine and versatile " +
+      "design is perfect for adding a touch of " +
+      "elegance to any occasion.";
+  } else {
+    descripcionKeliRosita.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en un delicado tono rosa con acabado " +
+      "flother. Su diseño femenino y versátil " +
+      "es ideal para complementar cualquier " +
+      "ocasión con un toque de elegancia.";
+  }
+}
+
+
+/* ===== TRADUCCIÓN DE CAMILA OSCURA ===== */
+
+const descripcionCamilaOscura = document.querySelector(
+  ".descripcion-camila-oscura"
+);
+
+if (descripcionCamilaOscura) {
+  if (idioma === "en") {
+    descripcionCamilaOscura.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a dark shade with an oiled leather finish. " +
+      "Its elegant and versatile design is perfect " +
+      "for complementing any occasion.";
+  } else {
+    descripcionCamilaOscura.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en tono oscuro con acabado graso. " +
+      "Su diseño elegante y versátil es ideal " +
+      "para complementar cualquier ocasión.";
+  }
+}
+
+/* ===== TRADUCCIÓN DE CAMILA CHOCOLATE ===== */
+
+const descripcionCamilaChocolate = document.querySelector(
+  ".descripcion-camila-chocolate"
+);
+
+if (descripcionCamilaChocolate) {
+  if (idioma === "en") {
+    descripcionCamilaChocolate.textContent =
+      "Handbag made from 100% genuine leather, " +
+      "in a chocolate brown shade with an oiled " +
+      "leather finish. Its elegant and versatile " +
+      "design is perfect for any occasion.";
+  } else {
+    descripcionCamilaChocolate.textContent =
+      "Bolsa elaborada en 100% piel genuina, " +
+      "en tono chocolate con acabado graso. " +
+      "Su diseño elegante y versátil es ideal " +
+      "para complementar cualquier ocasión.";
+  }
+}
+
+/* ===== TRADUCCIÓN DE CARTERA ESTEFY ===== */
+
+const descripcionCarteraEstefy = document.querySelector(
+  ".descripcion-cartera-estefy"
+);
+
+if (descripcionCarteraEstefy) {
+  if (idioma === "en") {
+    descripcionCarteraEstefy.textContent =
+      "Wallet made from 100% genuine leather, " +
+      "with cowhide hair details. Its elegant " +
+      "and practical design is perfect for " +
+      "complementing your style and carrying " +
+      "your everyday essentials.";
+  } else {
+    descripcionCarteraEstefy.textContent =
+      "Cartera elaborada en 100% piel genuina, " +
+      "con detalles de pelo de res. " +
+      "Su diseño elegante y práctico es ideal " +
+      "para complementar tu estilo y llevar " +
+      "tus artículos esenciales.";
+  }
+}
+
 /* ===== CARTERÓN DAFNE GRIS OSCURO ===== */
 
 const descripcionCarteronDafneGris = document.querySelector(
@@ -1516,6 +1726,60 @@ const fotosAdicionales = {
     "Sofi2 collage.png",
     "Sofi2 portrait.png",
     "Sofi2 side to side.png",
+],
+
+"Michelle": [
+  "Michelle collage.png",
+  "Michelle portrait.png",
+  "Michelle side to side.png",
+],
+
+"Daisy": [
+  "Daisy collage.png",
+  "Daisy portrait.png",
+  "Daisy side to side.png",
+],
+
+"Nataly beige": [
+  "Nataly beige collage.png",
+  "Nataly beige portrait.png",
+  "Nataly beige side to side.png"
+],
+
+"Damiana": [
+  "Damiana collage.png",
+  "Damiana portrait.png",
+  "Damiana side to side.png"
+],
+
+"Renata chocolate": [
+  "Renata collage.png",
+  "Renata portrait.png",
+  "Renata side to side.png"
+],
+
+"Keli rosita": [
+  "Keli rosita collage.png",
+  "Keli rosita portrait.png",
+  "Keli rosita side to side.png"
+],
+
+"Camila oscura": [
+  "Camila oscura collage.png",
+  "Camila oscura portrait.png",
+  "Camila oscura side to side.png"
+],
+
+"Camila chocolate": [
+  "Camila chocolate collage.png",
+  "Camila chocolate portrait.png",
+  "Camila chocolate side to side.png"
+],
+
+"Cartera Estefy": [
+  "Cartera Estefy collage.png",
+  "Cartera Estefy portrait.png",
+  "Cartera Estefy side to side.png"
 ],
 
 };
