@@ -381,7 +381,7 @@ const asunto = encodeURIComponent(
 );
 
     window.location.href =
-        "mailto:angel_perla@hotmail.com?subject=" +
+        "mailto:jackiesboutique.ne@outlook.com?subject=" +
         asunto +
         "&body=" +
         mensaje;
@@ -1285,7 +1285,8 @@ const textosContacto = {
         p2: "Contact us to learn more about our collection, availability, and upcoming designs.",
         telefono: "📱 Phone:",
         correo: "📧 Email:",
-        final: "It will be our pleasure to assist you."
+        final: "It will be our pleasure to assist you.",
+        correoBoutique: "👜 Jackie's Boutique Email:",
     },
     es: {
         titulo: "Contáctanos",
@@ -1293,11 +1294,13 @@ const textosContacto = {
         p2: "Escríbenos para conocer nuestra colección, disponibilidad y próximos diseños.",
         telefono: "📱 Teléfono:",
         correo: "📧 Correo:",
-        final: "Será un placer atenderte."
+        final: "Será un placer atenderte.",
+        correoBoutique: "👜 Correo de Jackie’s Boutique:"
     }
 };
 
 const contacto = textosContacto[idioma];
+document.querySelector(".contacto-correo-boutique").textContent = contacto.correoBoutique;
 
 document.querySelector(".titulo-contacto").textContent = contacto.titulo;
 document.querySelector(".contacto-1").textContent = contacto.p1;
