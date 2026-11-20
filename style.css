@@ -720,3 +720,37 @@ article .ver-mas-fotos:hover { color: #fff; }
 .galeria-cerrar { position: absolute; top: 10px; right: 12px; }
 .galeria-panel button:focus-visible, .ver-mas-fotos:focus-visible { outline: 3px solid #b47b38; outline-offset: 3px; }
 @media(max-width: 700px) { .galeria-panel { padding: 16px 10px; } }
+
+/* ===== TIPO DE ENTREGA Y CÓDIGO POSTAL ===== */
+
+#seccion-envio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+#seccion-envio label {
+  display: block;
+  margin-top: 5px;
+  text-align: center;
+}
+
+#tipo-entrega,
+#zip-code {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px;
+  border: 1px solid #d8c8d2;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #704264;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+#costo-envio {
+  text-align: center;
+  margin-top: 10px;
+}

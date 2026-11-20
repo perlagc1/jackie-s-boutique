@@ -44,6 +44,12 @@ function agregarAlCarrito(nombre, precio) {
     console.log("Carrito:", carrito);
 
 }
+// ===== SALES TAX - JACKIE'S BOUTIQUE =====
+
+function calcularImpuestoLexington(subtotal) {
+    const tasaImpuesto = 0.07;
+    return Math.round(subtotal * tasaImpuesto * 100) / 100;
+}
 function actualizarCarrito() {
     const contadorCarrito = document.getElementById("contador-carrito");
     const listaCarrito = document.getElementById("lista-carrito");
@@ -82,6 +88,18 @@ botonQuitar.textContent = idiomaActual === "en" ? "Remove" : "Quitar";
 
     
 const envio = calcularEnvio();
+const mensajeImpuesto = document.getElementById("impuesto-carrito");
+
+const codigoPostal = document.getElementById("zip-code")?.value.trim() || "";
+
+// Impuesto pendiente de confirmar según el destino de entrega
+const impuesto = 0;
+if (mensajeImpuesto) {
+    mensajeImpuesto.style.display = "block";
+    mensajeImpuesto.textContent = idiomaActual === "en"
+        ? "Sales tax: Pending confirmation"
+        : "Impuesto de venta: Pendiente de confirmar";
+}
 
 if (envio === null) {
   
@@ -99,6 +117,7 @@ function calcularEnvio() {
   const zip = document.getElementById("zip-code").value.trim();
   const costoEnvio = document.getElementById("costo-envio");
 const ingles = idiomaActual === "en";
+const tipoEntrega = document.getElementById("tipo-entrega").value;
 
   if (!/^\d{5}$/.test(zip)) {
     costoEnvio.textContent = ingles
@@ -106,8 +125,21 @@ const ingles = idiomaActual === "en";
   : "Ingresa un ZIP Code válido de 5 dígitos.";
     return null;
   }
+    if (!tipoEntrega) {
+  costoEnvio.textContent = ingles
+    ? "Please select a delivery type."
+    : "Selecciona un tipo de entrega.";
+  return null;
+}
 
-  if (zip === "68850") {
+if (tipoEntrega === "local" && zip !== "68850") {
+  costoEnvio.textContent = ingles
+    ? "Local delivery is only available in Lexington."
+    : "La entrega local solo está disponible en Lexington.";
+  return null;
+}
+
+  if (tipoEntrega === "local" && zip === "68850") {
    
 costoEnvio.textContent = ingles
   ? "FREE local delivery"
@@ -122,6 +154,9 @@ costoEnvio.textContent = ingles
   return 10;
 }
 
+document.getElementById("tipo-entrega").addEventListener("change", function() {
+    actualizarCarrito();
+});
 
 document.getElementById("zip-code").addEventListener("input", function () {
   actualizarCarrito();
@@ -210,7 +245,9 @@ mostrarNotificacion(
         total += producto.precio;
     });
 
-    checkoutTotal.textContent = "$" + (total + envio).toFixed(2);
+    // Impuesto pendiente de confirmar
+const impuestoCheckout = 0;
+    checkoutTotal.textContent = "$" + (total + envio + impuestoCheckout).toFixed(2);
     checkout.style.display = "block";
 
 mostrarNotificacion(
@@ -342,7 +379,9 @@ if (envio === null) {
 }
 
 const zip = document.getElementById("zip-code").value.trim();
-const totalFinal = total + envio;
+// Impuesto pendiente de confirmar según el destino
+const impuestoPedido = 0;
+const totalFinal = total + envio + impuestoPedido;
 
 let resumenProductos = "";
 
@@ -359,9 +398,16 @@ const resumenPedido =
   resumenProductos +
   "\nZIP Code: " + zip +
   (idiomaActual === "en"
-    ? "\nUSPS Shipping: $"
-    : "\nEnvío USPS: $") + envio.toFixed(2) +
-  "\nTotal: $" + totalFinal.toFixed(2) +
+    ? (envio === 0
+        ? "\nFree local delivery: $"
+        : "\nUSPS Shipping: $")
+    : (envio === 0
+        ? "\nEntrega local GRATIS: $"
+        : "\nEnvío USPS: $")) + envio.toFixed(2) +
+        "\nTotal: $" + totalFinal.toFixed(2) +
+        (idiomaActual === "en"
+  ? "\nSales tax: Pending confirmation"
+  : "\nImpuesto de venta: Pendiente de confirmar") +
   (idiomaActual === "en"
     ? "\nPayment method: "
     : "\nMétodo de pago: ") + metodoPagoSeleccionado;
@@ -399,6 +445,14 @@ actualizarCarrito();
 
     // Cambiar idioma del documento
     document.documentElement.lang = idioma;
+// Traducción del aviso de impuesto
+const avisoImpuesto = document.getElementById("aviso-impuesto");
+
+if (avisoImpuesto) {
+  avisoImpuesto.textContent = idioma === "en"
+    ? "Sales tax will be confirmed before payment."
+    : "El impuesto de venta se confirmará antes de realizar el pago.";
+}
 
     // Traducción de la descripción de Arely
 const descripcionArely = document.querySelector(".descripcion-arely");

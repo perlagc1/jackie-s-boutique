@@ -72,6 +72,13 @@
    
 <!-- CÓDIGO POSTAL Y ENVÍO -->
 <div id="seccion-envio">
+  <label for="tipo-entrega">Tipo de entrega / Delivery type:</label>
+
+<select id="tipo-entrega">
+    <option value="">Selecciona / Select</option>
+    <option value="local">Entrega local en Lexington / Local delivery</option>
+    <option value="usps">Envío USPS / USPS shipping</option>
+</select>
   <label for="zip-code">ZIP Code / Código postal:</label>
   <input type="text" id="zip-code"
          maxlength="5"
@@ -82,7 +89,10 @@
     Ingresa tu ZIP Code para calcular el envío.
   </p>
 </div>
-
+<p id="impuesto-carrito" style="display: none;"></p>
+<p id="aviso-impuesto">
+  El impuesto de venta se confirmará antes de realizar el pago.
+</p>
     <p>
         <strong>Total: $<span id="total-carrito">0</span></strong>
     </p>
