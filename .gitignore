@@ -1,5 +1,11 @@
+# Private business documents
 Jackies_Boutique_Ganancias_Sencillo.xlsx
 TaxPermit.pdf
-# Private business inventory and Excel temporary files
+
+# Private inventory and financial files
 *.xlsx
+*.xls
+*.pdf
+
+# Temporary Excel files
 ~$*

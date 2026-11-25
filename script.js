@@ -59,12 +59,21 @@ function actualizarCarrito() {
     listaCarrito.innerHTML = "";
 
     if (carrito.length === 0) {
-        listaCarrito.innerHTML = idiomaActual === "en"
-    ? "<p>Your cart is empty.</p>"
-    : "<p>Tu carrito está vacío.</p>";
-        totalCarrito.textContent = "0";
-        return;
-    }
+    listaCarrito.innerHTML = idiomaActual === "en"
+        ? "<p>Your cart is empty.</p>"
+        : "<p>Tu carrito está vacío.</p>";
+
+    // Reset the empty cart
+    totalCarrito.textContent = "0.00";
+
+    document.getElementById("etiqueta-total").textContent = "Total:";
+    document.getElementById("costo-envio").textContent = "";
+    document.getElementById("impuesto-carrito").textContent = "";
+    document.getElementById("aviso-impuesto").textContent = "";
+    document.getElementById("checkout").style.display = "none";
+
+    return;
+}
 
     let total = 0;
 
@@ -125,6 +134,21 @@ if (avisoImpuesto) {
         : (idiomaActual === "en"
             ? "Sales tax will be confirmed before payment."
             : "El impuesto de venta se confirmará antes de realizar el pago.");
+}
+// Update the cart total label based on tax status
+const etiquetaTotal = document.getElementById("etiqueta-total");
+
+if (etiquetaTotal) {
+    const impuestoIncluido =
+        tipoEntrega === "local" &&
+        codigoPostal === "68850" &&
+        envio !== null;
+
+    etiquetaTotal.textContent = impuestoIncluido
+        ? "Total:"
+        : (idiomaActual === "en"
+            ? "Total before tax:"
+            : "Total antes de impuestos:");
 }
 if (envio === null) {
   
@@ -270,8 +294,14 @@ mostrarNotificacion(
         total += producto.precio;
     });
 
-    // Impuesto pendiente de confirmar
-const impuestoCheckout = 0;
+    // Calculate sales tax for local delivery
+const zipCheckout = document.getElementById("zip-code").value.trim();
+const tipoEntregaCheckout = document.getElementById("tipo-entrega").value;
+
+const impuestoCheckout =
+    tipoEntregaCheckout === "local" && zipCheckout === "68850"
+        ? calcularImpuestoLexington(total)
+        : 0;
     checkoutTotal.textContent = "$" + (total + envio + impuestoCheckout).toFixed(2);
     checkout.style.display = "block";
 
@@ -351,6 +381,16 @@ if (metodo === "Cash App") {
 
     instrucciones.style.display = "block";
 }
+// Wait for order confirmation before payment
+instrucciones.innerHTML = idiomaActual === "en"
+    ? `<h4>Payment method: ${metodo}</h4>
+       <p>Please send your order by text or email.</p>
+       <p><strong>Do not send your payment until we confirm availability and your final total.</strong></p>`
+    : `<h4>Método de pago: ${metodo}</h4>
+       <p>Por favor, envía tu pedido por mensaje de texto o correo electrónico.</p>
+       <p><strong>No realices tu pago hasta que confirmemos la disponibilidad y el total final.</strong></p>`;
+
+instrucciones.style.display = "block";
 
 const botonConfirmar = document.getElementById("confirmar-pedido");
 botonConfirmar.style.display = "inline-block";
@@ -445,11 +485,14 @@ const resumenPedido =
         ? "\nSales tax included: $"
         : "\nImpuesto de venta incluido: $") + impuestoPedido.toFixed(2)
     : (idiomaActual === "en"
-        ? "\nSales tax: Pending confirmation\nPlease wait for the final total before making your payment."
-        : "\nImpuesto de venta: Pendiente de confirmar\nPor favor, espera la confirmación del total final antes de realizar tu pago.")) +
+    ? "\nSales tax: Pending confirmation"
+    : "\nImpuesto de venta: Pendiente de confirmar")) +
   (idiomaActual === "en"
     ? "\nPayment method: "
-    : "\nMétodo de pago: ") + metodoPagoSeleccionado;
+    : "\nMétodo de pago: ") + metodoPagoSeleccionado +
+(idiomaActual === "en"
+    ? "\n\nImportant: Please wait until we confirm availability and your final total before sending your payment."
+    : "\n\nImportante: Por favor, espera a que confirmemos la disponibilidad y el total final antes de realizar tu pago.");
 
     const mensaje = encodeURIComponent(resumenPedido);
 
@@ -484,23 +527,7 @@ actualizarCarrito();
 
     // Cambiar idioma del documento
     document.documentElement.lang = idioma;
-// Traducción del aviso de impuesto
-const avisoImpuesto = document.getElementById("aviso-impuesto");
 
-if (avisoImpuesto) {
-  const zip = document.getElementById("zip-code")?.value.trim();
-  const tipoEntrega = document.getElementById("tipo-entrega")?.value;
-
-  const entregaLocal = tipoEntrega === "local" && zip === "68850";
-
-  avisoImpuesto.textContent = entregaLocal
-    ? (idioma === "en"
-        ? "Sales tax is included in the total."
-        : "El impuesto de venta está incluido en el total.")
-    : (idioma === "en"
-        ? "Sales tax will be confirmed before payment."
-        : "El impuesto de venta se confirmará antes de realizar el pago.");
-}
 
     // Traducción de la descripción de Arely
 const descripcionArely = document.querySelector(".descripcion-arely");
@@ -1477,17 +1504,6 @@ document.getElementById("finalizar-compra").textContent =
 document.querySelector('label[for="zip-code"]').textContent =
   "ZIP Code:";
 
-const zipActual = document.getElementById("zip-code").value.trim();
-const costoEnvioTexto = document.getElementById("costo-envio");
-
-if (!/^\d{5}$/.test(zipActual)) {
-  costoEnvioTexto.textContent =
-    "Please enter a valid 5-digit ZIP Code.";
-} else if (zipActual === "68850") {
-  costoEnvioTexto.textContent = "FREE local delivery";
-} else {
-  costoEnvioTexto.textContent = "USPS Shipping: $10.00";
-}
     document.querySelector("#checkout h3").textContent =
     "Complete Your Purchase";
 
@@ -1498,7 +1514,7 @@ if (!/^\d{5}$/.test(zipActual)) {
     "Select your payment method:";
 
     document.querySelector(".aviso-pedido").textContent =
-    "Important: Sending your order does not reserve the handbag. Your order will remain pending until we receive and confirm your payment.";
+    "Important: Sending your order does not reserve the handbag. We will first confirm availability and your final total. Then, we will provide payment instructions.";
 // Botones para enviar el pedido en inglés
 document.querySelector('#confirmar-pedido button[onclick*="sms"]').textContent =
     "📱 Send by Text";
@@ -1545,8 +1561,7 @@ document.getElementById("finalizar-compra").textContent =
 
     // Aviso importante en español
 document.querySelector(".aviso-pedido").textContent =
-    "Importante: enviar tu pedido no reserva la bolsa. Tu pedido quedará pendiente hasta que recibamos y confirmemos tu pago.";
-
+    "Importante: enviar tu pedido no reserva la bolsa. Primero confirmaremos la disponibilidad y el total final. Después te proporcionaremos las instrucciones para realizar tu pago.";
 // Botones para enviar el pedido en español
 document.querySelector('#confirmar-pedido button[onclick*="sms"]').textContent =
     "📱 Enviar por mensaje";
