@@ -4,6 +4,81 @@ let carrito = [];
 let metodoPagoSeleccionado = "";
 const productosAgotados = ["Arely", "Sofi"];
 
+// ===== SHARING OUR BLESSINGS PROMOTION - 15% OFF =====
+
+const descuentoPromocion = 0.15;
+
+const inicioPromocion = new Date("2026-11-26T00:00:00-06:00");
+const finPromocion = new Date("2026-11-30T00:00:00-06:00");
+
+function promocionActiva() {
+    const ahora = new Date();
+
+    return ahora >= inicioPromocion && ahora < finPromocion;
+}
+
+function calcularPrecioPromocion(precio) {
+    if (promocionActiva()) {
+        return Math.round(precio * (1 - descuentoPromocion) * 100) / 100;
+    }
+
+    return precio;
+}
+
+// ===== DISPLAY PROMOTIONAL PRICES =====
+
+function mostrarPreciosPromocion() {
+    document.querySelectorAll(".productos article").forEach(articulo => {
+
+        // Skip hidden and sold-out products
+        if (articulo.hidden || getComputedStyle(articulo).display === "none") {
+            return;
+        }
+
+        const boton = articulo.querySelector(
+            'button[onclick*="agregarAlCarrito"]'
+        );
+
+        const precioElemento = articulo.querySelector("p > strong");
+
+        if (!boton || boton.disabled || !precioElemento) {
+            return;
+        }
+
+        // Preserve the original product price
+        if (!precioElemento.dataset.precioOriginal) {
+            precioElemento.dataset.precioOriginal =
+                precioElemento.textContent.replace("$", "").trim();
+        }
+
+        const precioOriginal = Number(
+            precioElemento.dataset.precioOriginal
+        );
+
+        if (!Number.isFinite(precioOriginal)) {
+            return;
+        }
+
+        if (promocionActiva()) {
+            const precioNuevo = calcularPrecioPromocion(precioOriginal);
+
+            precioElemento.innerHTML = `
+                <del style="color: #888;">
+                    $${precioOriginal.toFixed(2)}
+                </del>
+                <span style="color: #B22222; font-size: 1.2em;">
+                    $${precioNuevo.toFixed(2)}
+                </span>
+                <span style="color: #B22222;">
+                    (${idiomaActual === "en" ? "15% OFF" : "15% de descuento"})
+                </span>
+            `;
+        } else {
+            precioElemento.textContent = "$" + precioOriginal.toFixed(2);
+        }
+    });
+}
+
 function agregarAlCarrito(nombre, precio) {
 
     if (productosAgotados.includes(nombre)) {
@@ -78,11 +153,10 @@ function actualizarCarrito() {
     let total = 0;
 
    carrito.forEach(producto => {
-    const item = document.createElement("p");
+    const item = document.createElement("li");
 
-    item.textContent = producto.nombre + " — $" + producto.precio + " ";
-
-    const botonQuitar = document.createElement("button");
+    item.textContent = producto.nombre + " — $" + calcularPrecioPromocion(producto.precio).toFixed(2) + " ";
+      const botonQuitar = document.createElement("button");
     
 botonQuitar.textContent = idiomaActual === "en" ? "Remove" : "Quitar";
     botonQuitar.onclick = function() {
@@ -92,7 +166,7 @@ botonQuitar.textContent = idiomaActual === "en" ? "Remove" : "Quitar";
     item.appendChild(botonQuitar);
     listaCarrito.appendChild(item);
 
-    total += producto.precio;
+    total += calcularPrecioPromocion(producto.precio);
 });
 
     
@@ -151,13 +225,24 @@ if (etiquetaTotal) {
             : "Total antes de impuestos:");
 }
 if (envio === null) {
-  
-totalCarrito.textContent = total +
-  (idiomaActual === "en"
-    ? " + shipping pending"
-    : " + envío pendiente");
+    totalCarrito.textContent = total.toFixed(2) +
+        (idiomaActual === "en"
+            ? " + shipping pending"
+            : " + envío pendiente");
 } else {
-  totalCarrito.textContent = (total + envio + impuesto).toFixed(2);
+    totalCarrito.textContent = (total + envio + impuesto).toFixed(2);
+}
+
+// Keep the checkout total synchronized with the cart
+const checkout = document.getElementById("checkout");
+const checkoutTotal = document.getElementById("checkout-total");
+
+if (checkout.style.display === "block") {
+    checkoutTotal.textContent = envio === null
+        ? (idiomaActual === "en"
+            ? "Shipping pending"
+            : "Envío pendiente")
+        : "$" + (total + envio + impuesto).toFixed(2);
 }
 
 }
@@ -208,29 +293,7 @@ document.getElementById("tipo-entrega").addEventListener("change", function() {
 });
 
 document.getElementById("zip-code").addEventListener("input", function () {
-  actualizarCarrito();
-
-  const checkout = document.getElementById("checkout");
-
-  if (checkout.style.display === "block") {
-    const envio = calcularEnvio();
-    const checkoutTotal = document.getElementById("checkout-total");
-
-    if (envio === null) {
-      checkoutTotal.textContent =
-        idiomaActual === "en"
-          ? "Shipping pending"
-          : "Envío pendiente";
-    } else {
-      let total = 0;
-
-      carrito.forEach(producto => {
-        total += producto.precio;
-      });
-
-      checkoutTotal.textContent = "$" + (total + envio).toFixed(2);
-    }
-  }
+    actualizarCarrito();
 });
 
 
@@ -291,7 +354,7 @@ mostrarNotificacion(
     let total = 0;
 
     carrito.forEach(producto => {
-        total += producto.precio;
+        total += calcularPrecioPromocion(producto.precio);
     });
 
     // Calculate sales tax for local delivery
@@ -429,7 +492,7 @@ if (productoAgotado) {
     let total = 0;
 
 carrito.forEach(producto => {
-    total += producto.precio;
+    total += calcularPrecioPromocion(producto.precio);
 });
 
 const envio = calcularEnvio();
@@ -457,7 +520,7 @@ const totalFinal = total + envio + impuestoPedido;
 let resumenProductos = "";
 
 carrito.forEach(producto => {
-    resumenProductos += producto.nombre + " — $" + producto.precio + "\n";
+    resumenProductos += producto.nombre + " — $" + calcularPrecioPromocion(producto.precio).toFixed(2) + "\n";
 });
 
 
@@ -524,6 +587,8 @@ let idiomaActual = "es";
 function cambiarIdioma(idioma) {
     idiomaActual = idioma;
 actualizarCarrito();
+mostrarPreciosPromocion();
+mostrarBannerPromocion();
 
     // Cambiar idioma del documento
     document.documentElement.lang = idioma;
@@ -1986,3 +2051,58 @@ document.querySelectorAll(".ver-mas-fotos").forEach(boton => {
     abrirGaleria(this);
   });
 });
+// ===== INITIALIZE PROMOTIONAL PRICES =====
+mostrarPreciosPromocion();
+
+// ===== AUTOMATIC PROMOTION EXPIRATION =====
+let estadoPromocionAnterior = promocionActiva();
+
+setInterval(function () {
+    const estadoActual = promocionActiva();
+
+    if (estadoActual !== estadoPromocionAnterior) {
+        estadoPromocionAnterior = estadoActual;
+        mostrarPreciosPromocion();
+        mostrarBannerPromocion();
+        actualizarCarrito();
+    }
+}, 1000);
+
+// ===== BILINGUAL PROMOTION BANNER =====
+
+function mostrarBannerPromocion() {
+    const banner = document.getElementById("banner-promocion");
+
+    if (!banner) {
+        return;
+    }
+
+    banner.hidden = !promocionActiva();
+
+    const ingles = idiomaActual === "en";
+
+    document.getElementById("promocion-titulo").textContent =
+        ingles
+            ? "Sharing Our Blessings"
+            : "Compartiendo mis Bendiciones";
+
+    document.getElementById("promocion-descuento").textContent =
+        ingles ? "OFF" : "DE DESCUENTO";
+
+    document.getElementById("promocion-fechas").textContent =
+        ingles
+            ? "NOVEMBER 26 – 29"
+            : "26 – 29 DE NOVIEMBRE";
+
+    document.getElementById("promocion-mensaje").textContent =
+        ingles
+            ? "Let us celebrate God's blessings together."
+            : "Celebremos juntos las bendiciones de Dios.";
+
+    document.getElementById("promocion-condiciones").textContent =
+        ingles
+            ? "Taxes and shipping not included."
+            : "Impuestos y envío no incluidos.";
+}
+
+mostrarBannerPromocion();

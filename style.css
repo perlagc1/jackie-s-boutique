@@ -754,3 +754,72 @@ article .ver-mas-fotos:hover { color: #fff; }
   text-align: center;
   margin-top: 10px;
 }
+
+/* ===== SHARING OUR BLESSINGS PROMOTION ===== */
+
+#banner-promocion[hidden] {
+    display: none !important;
+}
+
+#banner-promocion {
+    background: #FAF2EF;
+    color: #713C60;
+    font-family: Georgia, serif;
+    text-align: center;
+    padding: 12px;
+    margin: 30px auto;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+#banner-promocion .promocion-marco {
+    border: 1px solid #B99A62;
+    padding: 30px 15px;
+}
+
+#promocion-titulo {
+    font-family: Georgia, serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: normal;
+    color: #713C60;
+    margin: 0 0 15px;
+}
+
+.promocion-porcentaje {
+    font-size: clamp(60px, 9vw, 90px);
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+#promocion-descuento {
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+#promocion-fechas {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin: 15px 0;
+}
+
+#promocion-mensaje {
+    font-size: 18px;
+    font-style: italic;
+    margin: 15px 0;
+}
+
+#promocion-condiciones {
+    font-size: 13px;
+    margin: 10px 0 0;
+}
+
+/* ===== PROMOTION TEXT ALIGNMENT ===== */
+
+#banner-promocion p {
+    width: 100%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
