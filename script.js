@@ -387,14 +387,14 @@ if (metodo === "Zelle") {
             <h4>Pay with Zelle</h4>
             <p>Send your payment through Zelle to the following phone number:</p>
             <p><strong>308-746-0339</strong></p>
-            <p>After making your payment, contact us to confirm your order.</p>
+            <p>Please wait for our confirmation before sending your payment.</p>
         `;
     } else {
         instrucciones.innerHTML = `
             <h4>Pago con Zelle</h4>
             <p>Envía tu pago por Zelle al siguiente número:</p>
             <p><strong>308-746-0339</strong></p>
-            <p>Después de realizar el pago, contáctanos para confirmar tu pedido.</p>
+            <p>Por favor, espera nuestra confirmación antes de realizar tu pago.</p>
         `;
     }
 
@@ -408,7 +408,7 @@ if (metodo === "Venmo") {
             <p>Send your payment through Venmo to the following username:</p>
             <p><strong>@Perla-GarciaCavazos</strong></p>
             <p><a href="https://venmo.com/u/Perla-GarciaCavazos" target="_blank" rel="noopener noreferrer">Open Perla's Venmo profile</a></p>
-            <p>After making your payment, contact us to confirm your order.</p>
+            <p>Please wait for our confirmation before sending your payment.</p>
         `;
     } else {
         instrucciones.innerHTML = `
@@ -416,7 +416,7 @@ if (metodo === "Venmo") {
             <p>Envía tu pago por Venmo al siguiente usuario:</p>
             <p><strong>@Perla-GarciaCavazos</strong></p>
             <p><a href="https://venmo.com/u/Perla-GarciaCavazos" target="_blank" rel="noopener noreferrer">Abrir el perfil de Venmo de Perla</a></p>
-            <p>Después de realizar el pago, contáctanos para confirmar tu pedido.</p>
+            <p>Por favor, espera nuestra confirmación antes de realizar tu pago.</p>
         `;
     }
 
@@ -430,7 +430,7 @@ if (metodo === "Cash App") {
             <p>Send your payment through Cash App to the following $Cashtag:</p>
             <p><strong>$perlagc1</strong></p>
             <p><a href="https://cash.app/$perlagc1" target="_blank" rel="noopener noreferrer">Open Perla's Cash App profile</a></p>
-            <p>After making your payment, contact us to confirm your order.</p>
+            <p>Please wait for our confirmation before sending your payment.</p>
         `;
     } else {
         instrucciones.innerHTML = `
@@ -438,20 +438,16 @@ if (metodo === "Cash App") {
             <p>Envía tu pago por Cash App al siguiente $Cashtag:</p>
             <p><strong>$perlagc1</strong></p>
             <p><a href="https://cash.app/$perlagc1" target="_blank" rel="noopener noreferrer">Abrir el perfil de Cash App de Perla</a></p>
-            <p>Después de realizar el pago, contáctanos para confirmar tu pedido.</p>
+            <p>Por favor, espera nuestra confirmación antes de realizar tu pago.</p>
         `;
     }
 
     instrucciones.style.display = "block";
 }
-// Wait for order confirmation before payment
-instrucciones.innerHTML = idiomaActual === "en"
-    ? `<h4>Payment method: ${metodo}</h4>
-       <p>Please send your order by text or email.</p>
-       <p><strong>Do not send your payment until we confirm availability and your final total.</strong></p>`
-    : `<h4>Método de pago: ${metodo}</h4>
-       <p>Por favor, envía tu pedido por mensaje de texto o correo electrónico.</p>
-       <p><strong>No realices tu pago hasta que confirmemos la disponibilidad y el total final.</strong></p>`;
+// Order confirmation instructions
+instrucciones.innerHTML += idiomaActual === "en"
+    ? `<p><strong>Please send your order by text or email to confirm availability and your final total.</strong></p>`
+    : `<p><strong>Por favor, envía tu pedido por mensaje de texto o correo electrónico para confirmar la disponibilidad y el total final.</strong></p>`;
 
 instrucciones.style.display = "block";
 
